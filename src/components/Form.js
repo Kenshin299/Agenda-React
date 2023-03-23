@@ -1,20 +1,27 @@
-import { useState } from "react";
-
 function Form() {
-    // const [form, setForm] = useState("");
+    
+    function handleSubmit(event) {
+        const form = document.getElementById('form');
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const formJson = Object.fromEntries(formData.entries());
 
-    // const handleForm = () => {
-    //     setForm = this.form;
-    // }    
-    // const submitForm = () => {
-    //     console.log(JSON.stringify(form));
-    // }
+        fetch("http://www.raydelto.org/agenda.php", {
+            method: 'POST',
+            body: JSON.stringify(formJson),
+        }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response));
+        console.log(formJson);
+        form.reset();
+    }
+
     return(
         <div className='form-container'>
             <h1>
                 Nuevo Contacto
             </h1>
-            <form id="form">
+            <form id="form" onSubmit={handleSubmit}>
                 <label htmlFor="nombre">Nombre ✏️</label>
                 <input type="text" name="nombre" id="nombre" placeholder="John" />
                 <label htmlFor="apellido">Apellido ✏️</label>
@@ -23,7 +30,7 @@ function Form() {
                 <input type="tel" name="telefono" id="telefono" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="800-999-9999" />
                 
                 <div className="button">
-                    <input type="button" name="btn-agregar" value="Agregar"/>
+                    <input type="submit" name="btn-agregar" value="Agregar"/>
                 </div>
             </form>
          </div> 

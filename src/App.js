@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Header />
-      <Form/>
+      <Form />
       <ContactList />
     </>
   );
