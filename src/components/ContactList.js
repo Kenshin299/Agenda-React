@@ -6,20 +6,20 @@ function ContactList() {
 
     useEffect(() => {
         const fetchContacts = async () => {
-        const data = await fetch("http://www.raydelto.org/agenda.php").then(function (result) {
-            return result.json();
-        });
-        setData(data);
+            const data = await fetch("http://www.raydelto.org/agenda.php").then(function (result) {
+                return result.json();
+            });
+            setData(data);
         };
         fetchContacts(); 
     }, []);
 
     return (
-    <div className='flex-container'>
+    <div id='contact-list' className='flex-container'>
         <h1>
             Lista de Contactos
         </h1>
-        <ContactCard data={data}/>
+        <ContactCard data={data} />
     </div>
     ) 
 }
