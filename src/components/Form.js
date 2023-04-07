@@ -4,10 +4,15 @@ function Form() {
         const form = document.getElementById('form');
         const formData = new FormData(event.target);
         const formJson = Object.fromEntries(formData.entries());
+        // const url = "http://www.raydelto.org/agenda.php"
+        const url = "http://localhost:8080/listaPropia" 
 
-        fetch("http://www.raydelto.org/agenda.php", {
+        fetch(url, {
             method: 'POST',
             body: JSON.stringify(formJson),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }).then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(response => console.log('Success:', response));

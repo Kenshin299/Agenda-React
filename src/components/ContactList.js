@@ -3,10 +3,11 @@ import ContactCard from "./ContactCard";
 
 function ContactList() {
     const [data, setData] = useState([]);
-
+    // const url = "http://www.raydelto.org/agenda.php"
+    const url = "http://localhost:8080/listaPropia"
     useEffect(() => {
         const fetchContacts = async () => {
-            const data = await fetch("http://www.raydelto.org/agenda.php").then(function (result) {
+            const data = await fetch(url).then(function (result) {
                 return result.json();
             });
             setData(data);
